@@ -1,35 +1,24 @@
 package exercicio5.entities;
 
-import java.util.Scanner;
-
 public class Bank {
 
-    public int numeroConta;
-    public String nome;
-    public char deposito;
-    public double valor;
-    public double valorDeposito;
-    public double valorSaque;
+    private int numero;
+    private String nome;
+    private double extrato;
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public Bank() {
-
-    }
-
-    public Bank(int numeroConta, String nome) {
-        this.numeroConta = numeroConta;
+    public Bank(int numero, String nome) {
+        this.numero = numero;
         this.nome = nome;
     }
 
-    public int getNumeroConta() {
-        return numeroConta;
+    public Bank(int numero, String nome, double depositoInicial) {
+        this.numero = numero;
+        this.nome = nome;
+        deposito(depositoInicial);
+    }
+
+    public int getNumero() {
+        return numero;
     }
 
     public String getNome() {
@@ -40,14 +29,19 @@ public class Bank {
         this.nome = nome;
     }
 
-    public void confirmacao(char deposito, double valor) {
-        Scanner scanner = new Scanner(System.in);
-        if (deposito == 's') {
-            System.out.println("Qual o valor do seu depósito: ");
-            valor = sc.nextDouble(); 
-        } else if(deposito == 'n') {
-            valor = 0.00;
-        }
+    public double getExtrato() {
+        return extrato;
+    }
 
+    public void deposito(double valor) {
+        extrato += valor;
+    }
+
+    public void saque(double valor) {
+        extrato = (extrato - valor) -5;
+    }
+
+    public String toString() {
+        return "Conta: " + numero + ", Dono: " + nome + ", Extrato: " + extrato;
     }
 }

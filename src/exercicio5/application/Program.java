@@ -6,33 +6,43 @@ import exercicio5.entities.Bank;
 
 public class Program {
     public static void main(String[] args) {
-        
+
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+        Bank banco;
 
-        Bank banco = new Bank();
+        System.out.println("Digite o número da conta: ");
+        int numero = sc.nextInt();
 
-        System.out.printf("Digite o número da conta: ");
-        banco.numeroConta = sc.nextInt();
-        System.out.printf("/nDigite o seu nome: ");
-        banco.nome = sc.nextLine();
-        System.out.printf("Deseja fazer um depósito (s/n)? ");
-        
+        System.out.println("Digite seu nome: ");
+        sc.nextLine();
+        String nome = sc.nextLine();
+
+        System.out.println("Deseja fazer um depósito (s/n)? ");
+        char resposta = sc.next().charAt(0);
+        if (resposta == 's') {
+            System.out.println("Digite o valor de depósito: ");
+            double depositoInicial = sc.nextDouble();
+            banco = new Bank(numero, nome, depositoInicial);
+        } else {
+            banco = new Bank(numero, nome);
+        }
 
         System.out.println("Dados da conta: ");
-        System.out.println("Conta " + banco.numeroConta + ", Dono: " + banco.nome + ", Balanço: $" + banco.valor);
+        System.out.println(banco);
 
         System.out.println("Digite um valor de depósito: ");
-        banco.valorDeposito = sc.nextDouble();
-
-        System.out.println("Dados atualizados da conta: ");
-        System.out.println("Conta " + banco.numeroConta + ", Dono: " + banco.nome + ", Balanço: $" + banco.valor);
+        double valorDeposito = sc.nextDouble();
+        banco.deposito(valorDeposito);
+        System.out.println("Dados da conta atualizados: ");
+        System.out.println(banco);
 
         System.out.println("Digite um valor de saque: ");
-        banco.valorSaque = sc.nextDouble();
+        double valorSaque = sc.nextDouble();
+        banco.saque(valorSaque);
+        System.out.println("Dados da conta atualizados: ");
+        System.out.println(banco);
 
-        System.out.println("Dados atualizados da conta: ");
-        System.out.println("Conta " + banco.numeroConta + ", Dono: " + banco.nome + ", Balanço: $" + banco.valor);
         sc.close();
     }
 }
