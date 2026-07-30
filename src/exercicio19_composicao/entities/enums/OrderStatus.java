@@ -1,4 +1,4 @@
-package exercicio19_composicao.entities;
+package exercicio19_composicao.entities.enums;
 
 public enum OrderStatus {
     PENDING_PAYMENT,
